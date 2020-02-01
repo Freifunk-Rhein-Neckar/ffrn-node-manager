@@ -6,7 +6,7 @@ import db as database
 
 class InputParser(object):
     regex = {
-        'hostname': r'''^[-a-zA-Z0-9_]{1,32}$''',
+        'hostname': r'''^[-a-zA-Z0-9_]{1,60}$''',
         'key': r'''^([a-fA-F0-9]{64})?$''',
         'email': r'''^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$''',
         'nickname': r'''^[-a-zA-Z0-9_ äöüÄÖÜß]{1,64}$''',
