@@ -2,11 +2,11 @@
 from flask_mail import Message
 
 def getMail(node):
-    msg = Message("Dein Freifunk Knoten", sender=("FFRN Node Registration", "info@freifunk-rhein-neckar.de"), recipients = [node['email']])
+    msg = Message("Dein Freifunk Knoten", sender=("FFRN Node Registration", "noreply@freifunk-rhein-neckar.de"), recipients = [node['email']])
     msg.body = '''
 Hey {nickname},
 
-Du hast gerade einen neuen Knoten für das Netz von Freifunk Rhein Neckar registriert - cool!
+Du hast gerade einen neuen Knoten für das Netz von Freifunk Rhein-Neckar registriert - cool!
 
 Die Daten deines Knotens lauten:
 
@@ -17,16 +17,18 @@ Die Daten deines Knotens lauten:
     Mail:           {email}
     Token:          {token}
 
-Bitte halte diese Daten aktuell. Du kannst Sie unter [1] pflegen.
+Bitte halte diese Daten aktuell. Du kannst sie unter [1] mit deinem Token pflegen.
 
 Wir hoffen, dass Du gut zurecht gekommen bist und würden uns freuen, wenn Du dich auch persönlich in die Community einbringen würdest. Vielleicht kannst Du ja sogar noch weitere Leute von unserem Projekt überzeugen.
 
-Solltest du Probleme oder Anregungen haben, kannst Du entweder auf diese Email antworten oder uns mittels einer der Kontaktmöglichkeiten im Wiki [1] erreichen.
+Solltest Du Probleme oder Anregungen haben, kannst Du die Community am besten über unser Forum [2] erreichen. Es gibt aber auch andere Kontaktmöglichkeiten [3].
 
 Viele Grüße,
-Freifunk Rhein Neckar
+Freifunk Rhein-Neckar
 
 [1] https://register.freifunk-rhein-neckar.de/
-[2] https://w.ffrn.de/kontakt
+[2] https://forum.ffrn.de/
+[3] https://www.freifunk-rhein-neckar.de/kontakt.html
+
 '''.format(**node)
     return msg
