@@ -32,7 +32,7 @@ class FastdConfig(object):
         node_list = self.db.getNodeList()
         self.removeOldFiles()
         for node in node_list:
-            with open(os.path.abspath(os.path.join(path_fastd, node['hostname'] + '.conf')), 'w') as f:
+            with open(os.path.abspath(os.path.join(path_fastd, node['hostname'].lower() + '.conf')), 'w') as f:
                 conf = """\
 #Hostname: {hostname}
 #MAC: {mac}
