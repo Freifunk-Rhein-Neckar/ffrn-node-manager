@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c2305ae7-7e1d-4e19-8859-8b2adf377447" name="tools.ffrn.de" url="http://tools.ffrn.de">
+        <fileTransfer host="tools.ffrn.de" port="22" rootFolder="/opt/ffrn-node-manager" accessType="SFTP" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
