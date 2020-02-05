@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-from flask_mail import Message
+from email.mime.text import MIMEText
 
 def getMail(node):
-    msg = Message("Dein Freifunk Knoten", sender=("FFRN Node Registration", "noreply@freifunk-rhein-neckar.de"), recipients = [node['email']])
-    msg.body = '''
-Hey {nickname},
+    msg = MIMEText('''Hey {nickname},
 
 Du hast gerade einen neuen Knoten für das Netz von Freifunk Rhein-Neckar registriert - cool!
 
@@ -30,5 +28,7 @@ Freifunk Rhein-Neckar
 [2] https://forum.ffrn.de/
 [3] https://www.freifunk-rhein-neckar.de/kontakt.html
 
-'''.format(**node)
+'''.format(**node))
+
+    msg['Subject'] = "Dein Freifunk Knoten"
     return msg

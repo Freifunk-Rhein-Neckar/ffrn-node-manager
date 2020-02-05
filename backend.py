@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify, render_template, abort
-from flask_mail import Mail
 import json
 from helper import InputParser, Token, Dedup, Recover
 import db as database
 from mail import getMail
+from sendemail import sendemail
 from generator import FFmapConfig, FastdConfig, aliasMap
 
 app = Flask(__name__)
-mail = Mail(app)
 parser = InputParser()
 token = Token()
 db = database.DB()
@@ -44,7 +43,7 @@ def process_new():
     ffmap.genAliasJson()
     fastd.genFastdConf()
     alias.genAliasMap()
-    mail.send(getMail(resp))
+    sendemail(getMail(resp), [resp['email']])
     resp['status'] = 'success'
     return jsonify(**resp)
 
@@ -99,7 +98,7 @@ def recover_token():
         return resp
     else:
         resp_mail = db.getNodeMac(val['mac'])
-        mail.send(getMail(resp_mail))
+        sendemail(getMail(resp_mail), [resp_mail['email']])
         resp = val
         resp['status'] = 'success'
         return jsonify(**resp)
