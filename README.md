@@ -13,6 +13,15 @@ Sie wird genutzt um die Knoten zu registrieren und so die fastd Keys zu erfassen
 
 \* falls so wie hier beschrieben konfiguriert
 
+### Vorarbeiten
+
+Es muss eine Konfigurationsdatei mit dem Namen `settings.conf` erstellt werden. 
+Dafür am besten die `settings-example.conf` nach `settings.conf` kopieren und 
+anpassen.
+
+Der in `fastd_path` konfigurierte Ordner muss aktuell ein git Repository 
+mit konfigurierten Remotes sein. 
+
 ### virtual enviroment (venv) aufsetzen
 Die Idee ist es alle in der `requirements.txt` gennanten Abhängigkeiten in ein 
 virtual environments zu installieren. Dafür muss dieses erstellt und die Pakete

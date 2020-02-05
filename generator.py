@@ -4,9 +4,10 @@ import json
 import os
 from glob import glob
 import configparser
-from subprocess import call
 import time
 import re
+import sh
+from datetime import datetime
 
 config = configparser.ConfigParser()
 config.read('settings.conf')
@@ -31,6 +32,14 @@ class FastdConfig(object):
     def genFastdConf(self):
         node_list = self.db.getNodeList()
         self.removeOldFiles()
+
+        if not os.path.exists(os.path.abspath(path_fastd)):
+            print("You must first create the in the config specified fastd_path and initiate a git repository!")
+            if __name__ == "__main__":
+                exit(2)
+            else:
+                return
+
         for node in node_list:
             with open(os.path.abspath(os.path.join(path_fastd, node['hostname'].lower() + '.conf')), 'w') as f:
                 conf = """\
@@ -39,6 +48,10 @@ class FastdConfig(object):
 key "{key}";
 """.format(**node)
                 f.write(conf)
+        git = sh.git.bake(_cwd=os.path.abspath(path_fastd))
+        git.add('.')
+        git.commit('-m ffrn-node-manager auto commit: ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "--quiet", _ok_code=[0, 1])
+        git.push("--quiet", _ok_code=[0])
 
 class FFmapConfig(object):
     def __init__(self):
