@@ -1,4 +1,5 @@
 nodes.db
+settings.conf
 
 # don't commit the venv
 venv
