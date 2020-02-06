@@ -4,6 +4,8 @@ settings.conf
 # don't commit the venv
 venv
 
+__pycache__
+
 # Created by https://www.gitignore.io/api/pycharm
 # Edit at https://www.gitignore.io/?templates=pycharm
 
