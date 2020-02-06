@@ -33,8 +33,10 @@ if __name__ ==  "__main__":
     sub = input("Subject: ")
     msg = input("Message: ")
     to = input("Recipient: ")
+    replyTo = input("Reply-To: ")
 
     message = MIMEText(msg)
     message['Subject'] = sub
+    message['Reply-To'] = replyTo
 
     sendemail(message, [to])

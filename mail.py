@@ -31,4 +31,5 @@ Freifunk Rhein-Neckar
 '''.format(**node))
 
     msg['Subject'] = "Dein Freifunk Knoten"
+    msg['Reply-To'] = "info@freifunk-rhein-neckar.de"
     return msg
