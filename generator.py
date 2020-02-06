@@ -50,6 +50,8 @@ key "{key}";
                 f.write(conf)
         git = sh.git.bake(_cwd=os.path.abspath(path_fastd))
         git.add('.')
+        git.config('user.name', 'FFRN Node Manager')
+        git.config('user.name', 'ffrn-node-manager@ffrn.de')
         git.commit('-m ffrn-node-manager auto commit: ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "--quiet", _ok_code=[0, 1])
         git.push("--quiet", _ok_code=[0])
 
