@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="nodes" uuid="9199b68e-6d41-446a-b47e-91870c9a04b1">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\TomHerbers\Documents\GitHub\Freifunk-Rhein-Neckar\ffrn-node-manager\nodes.db</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="nodes [2]" uuid="f63fbb6e-8885-4bfb-87dc-c89d8a79d42d">
+    <data-source source="LOCAL" name="nodes" uuid="3fd62e1f-c787-41e8-bebf-316cf247da3f">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
