@@ -1,6 +1,7 @@
 import configparser
 import smtplib
 from email.mime.text import MIMEText
+import email.utils
 
 def sendemail(message, receivers):
     config = configparser.ConfigParser()
@@ -15,6 +16,12 @@ def sendemail(message, receivers):
 
     if not message['From']:
         message['From'] = mail_from
+
+    if not message['Message-ID']:
+        message['Message-ID'] = email.utils.make_msgid()
+
+    if not message['Date']:
+        message['Date'] = email.utils.formatdate()
 
     if mail_bcc:
         receivers = [receivers] + [mail_bcc]
