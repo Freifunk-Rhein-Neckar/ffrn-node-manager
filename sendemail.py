@@ -12,7 +12,6 @@ def sendemail(message, receivers):
     smtp_pass = config['SMTP']['pass']
     mail_from = config['MAIL']['from']
     mail_bcc = config['MAIL'].get('bcc',"")
-    smtp_starttls = config['SMTP'].getboolean('starttls')
 
     if not message['From']:
         message['From'] = mail_from
@@ -26,11 +25,9 @@ def sendemail(message, receivers):
     if mail_bcc:
         receivers = [receivers] + [mail_bcc]
 
-    with smtplib.SMTP(smtp_host, smtp_port) as server:
+    with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
         server.set_debuglevel(False)
 
-        if smtp_starttls:
-            server.starttls()
         server.login(smtp_user, smtp_pass)
         server.sendmail(mail_from, receivers, message.as_string())
 
