@@ -22,8 +22,11 @@ def sendemail(message, receivers):
     if not message['Date']:
         message['Date'] = email.utils.formatdate()
 
+    if not message['To']:
+        message['To'] = ", ".join(receivers)
+
     if mail_bcc:
-        receivers = [receivers] + [mail_bcc]
+        receivers = receivers + [mail_bcc]
 
     with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
         server.set_debuglevel(False)
