@@ -2,7 +2,7 @@
 from email.mime.text import MIMEText
 
 def getMail(node):
-    msg = MIMEText('''Hey {nickname},
+    template = '''Hey {nickname},
 
 Du hast gerade einen neuen Knoten für das Netz von Freifunk Rhein-Neckar registriert - cool!
 
@@ -28,8 +28,10 @@ Freifunk Rhein-Neckar
 [2] https://forum.ffrn.de/
 [3] https://www.freifunk-rhein-neckar.de/kontakt.html
 
-'''.format(**node))
+'''
 
-    msg['Subject'] = "Dein Freifunk Knoten"
+    msg = MIMEText(template.format(**node), _charset="utf-8")
+
+    msg['Subject'] = f"Dein Freifunk Knoten - {node.get('hostname', 'unbekannt')}"
     msg['Reply-To'] = "info@freifunk-rhein-neckar.de"
     return msg
