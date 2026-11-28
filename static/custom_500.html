@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Unavailable</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #111827;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+    .card {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin: 0 0 0.75rem;
+    }
+    p {
+      color: #4b5563;
+      line-height: 1.5;
+      margin: 0 0 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #2563eb;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .btn:hover {
+      background-color: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Problem mit der Online Knoten Registrierung</h1>
+    <p>Wir haben aktuell ein Problem mit unserem Portal.</p>
+    <p>Bitte schick uns eine E-Mail mit den Details zu dem neuen Knoten (Name, Mac, Key) und dann kümmern wir uns darum das du freigeschaltet wirst. :)</p>
+    <a id="mail-link" class="btn" href="mailto:ffrn-node-manager@ffrn.de?subject=Knoten-Registrierung">E-Mail schicken</a>
+  </div>
+
+  <script>
+    const email = "ffrn-node-manager@ffrn.de";
+    const subject = encodeURIComponent("Knoten Registrierung");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const nodename = urlParams.get('nodename') || 'Bitte ersertzen';
+    const key = urlParams.get('key') || 'Bitte ersetzen';
+    const mac = urlParams.get('mac') || 'Bitte ersetzen';
+    const modell = urlParams.get('modell') || 'Bitte ersetzen';
+    const failedPage = window.location.href;
+
+    const emailBody = [
+      "Hallo,",
+      "",
+      "Ich würde gerne einen Knoten mit den folgenden Details freischalten:",
+      "",
+      "--- Node Information ---",
+      `• Node Name: ${nodename}`,
+      `• Model: ${modell}`,
+      `• MAC Address: ${mac}`,
+      `• Public Key: ${key}`,
+      `• Failed URL: ${failedPage}`,
+      "------------------------",
+      "",
+      "Vielen Dank"
+    ].join("\n");
+
+    document.getElementById("mail-link").href =
+      `mailto:${email}?subject=${subject}&body=${encodeURIComponent(emailBody)}`;
+  </script>
+</body>
+</html>
